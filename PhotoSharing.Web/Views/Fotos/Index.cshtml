@@ -1,0 +1,30 @@
+﻿@model IEnumerable<PhotoSharing.Models.Foto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Nova Foto", "Criar", null, new { @class = "btn btn-primary" })
+</p>
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img width="200" src="@Url.Action("ObterImagem","Fotos",new { id = item.Id})" />
+                <div class="caption">
+                    <h3>@item.Titulo</h3>
+                    <p>@item.Descricao</p>
+                    <p>
+                        @Html.ActionLink("Visualizar", "Visualizar", new { id = item.Id }, new { @class = "btn btn-danger" })
+                        @Html.ActionLink("Editar", "Editar", new { id = item.Id }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("Excluir", "Excluir", new { id = item.Id }, new { @class = "btn btn-danger" })
+                    </p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

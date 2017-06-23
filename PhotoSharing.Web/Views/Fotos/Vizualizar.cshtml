@@ -1,0 +1,26 @@
+﻿@model PhotoSharing.Models.Foto
+
+@{
+    ViewBag.Title = "Vizualizar";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="thumbnail">
+            <img width="200" src="@Url.Action("ObterImagem","Fotos",new { id = Model.Id})" />
+            <div class="caption">
+                <h3>@Model.Titulo</h3>
+                <p>@Model.Descricao</p>
+                <p>
+                   
+                    @Html.ActionLink("Excluir", "Excluir", new { id = Model.Id }, new { @class = "btn btn-danger" })
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+        <div class="col-md-12">
+               
+        </div>
+    </div>

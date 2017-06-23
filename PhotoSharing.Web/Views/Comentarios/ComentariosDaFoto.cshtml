@@ -1,0 +1,40 @@
+﻿@model IEnumerable<PhotoSharing.Models.Comentario>
+
+@{
+    AjaxOptions options = new AjaxOptions { UpdateTargetId = "list-comentarios"};
+    }
+
+@using (Ajax.BeginForm("ComentariosDaFoto", new { fotoId = ViewBag.PhotoId}, options))
+{
+    <div id="list-comentarios">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Usuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Titulo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Texto)
+                </th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Usuario)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Titulo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Texto)
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+}
+
