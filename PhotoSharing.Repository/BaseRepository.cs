@@ -1,6 +1,7 @@
 ﻿using PhotoSharing.DataAccess;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,7 +32,14 @@ namespace PhotoSharing.Repository
         {
             T entidade = photoSharingContext.Set<T>().Find(id);
             photoSharingContext.Set<T>().Remove(entidade);
+            
+            photoSharingContext.SaveChanges();
+        }
 
+        public virtual void Editar(int id)
+        {
+            T entidade = photoSharingContext.Set<T>().Find(id);
+            photoSharingContext.Entry(entidade).State = EntityState.Modified;
             photoSharingContext.SaveChanges();
         }
     }

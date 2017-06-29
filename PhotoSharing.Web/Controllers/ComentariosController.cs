@@ -12,6 +12,11 @@ namespace PhotoSharing.Web.Controllers
     {
         private ComentarioRepository comentarioRepository;
 
+        public ActionResult Index()
+        {
+            return View();
+        }
+
         public ComentariosController()
         {
             if(comentarioRepository == null)
@@ -28,11 +33,20 @@ namespace PhotoSharing.Web.Controllers
             return PartialView(comentarios);
         }
 
-
-
-        public ActionResult Index()
+        [HttpPost]
+        public PartialViewResult ComentariosDaFoto(Comentario comentario, int fotoId)
         {
-            return View();
+            comentario.Usuario = User.Identity.Name;
+            comentarioRepository.Adicionar(comentario);
+            IEnumerable<Comentario> comentarios = comentarioRepository.ObterComentariosPorFoto(fotoId);
+
+            ViewBag.Photoid = fotoId;
+            return PartialView(comentarios);
+        }
+
+        public ActionResult Comentar()
+        {
+            return PartialView();
         }
     }
 }

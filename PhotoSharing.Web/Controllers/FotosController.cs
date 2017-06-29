@@ -66,14 +66,15 @@ namespace PhotoSharing.Web.Controllers
                 return View(foto);
             }
 
-        public ActionResult Vizualizar(int Id)
+        public ActionResult Visualizar(int id)
         {
-            Foto foto = fotoRepository.ObterPorId(Id);
+            Foto foto = fotoRepository.ObterPorId(id);
 
             if (foto == null)
             {
                 return HttpNotFound();
             }
+
             return View(foto);
         }
 

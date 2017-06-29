@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<PhotoSharing.Models.Comentario>
 
+<!--Configuração Ajax para carregar apenas uma parte do HTML referente ao comentário da foto.-->
 @{
     AjaxOptions options = new AjaxOptions { UpdateTargetId = "list-comentarios"};
     }
@@ -35,6 +36,18 @@
                 </tr>
             }
         </table>
+
+        <div class="row">
+            @if (Request.IsAuthenticated)
+            {
+                @Html.Action("Comentar")
+            }
+            else
+            {
+                @Html.ActionLink("Você deve se Logar","Login","Account")
+            }
+
+        </div>
     </div>
 }
 
